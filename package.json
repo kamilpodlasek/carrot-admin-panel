@@ -4,8 +4,11 @@
   "description": "Test task for SkyGate",
   "private": true,
   "dependencies": {
+    "dexie": "^2.0.0-beta.11",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "redux": "^3.6.0"
   },
   "devDependencies": {
     "react-scripts": "1.0.7"
