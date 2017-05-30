@@ -1,0 +1,29 @@
+{
+  "name": "carrot-admin-panel",
+  "version": "0.1.0",
+  "description": "Test task for SkyGate",
+  "private": true,
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  },
+  "devDependencies": {
+    "react-scripts": "1.0.7"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamilpodlasek/carrot-admin-panel.git"
+  },
+  "author": "Kamil Podlasek",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kamilpodlasek/carrot-admin-panel/issues"
+  },
+  "homepage": "https://github.com/kamilpodlasek/carrot-admin-panel#readme"
+}
