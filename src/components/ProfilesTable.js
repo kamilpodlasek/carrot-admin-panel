@@ -32,7 +32,7 @@ const ProfilesTable = props => {
 };
 
 ProfilesTable.propTypes = {
-  profile: PropTypes.object,
+  profiles: PropTypes.array.isRequired,
   deleteCarrots: PropTypes.func.isRequired,
   addCarrots: PropTypes.func.isRequired,
   deleteProfile: PropTypes.func.isRequired
