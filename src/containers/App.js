@@ -4,38 +4,35 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as actions from '../actions';
+import CreateProfile from '../components/CreateProfile';
+import ProfilesTable from '../components/ProfilesTable';
 import '../styles/App.css';
 
 class App extends Component {
-  constructor() {
-    super();
-    
-    this.createProfile = this.createProfile.bind(this);
-  }
-
-  createProfile() {
-    this.props.actions.createProfile({ name: "test", carrots: 10 });
-  }
-
   render() {
-    console.log("render", this.props);
     return (
       <div>
-        <h1>Hello</h1>
-        <button onClick={this.createProfile}>Add Profile</button>
+        <CreateProfile
+          createProfile={this.props.actions.createProfile}
+        />
+        <ProfilesTable
+          profiles={this.props.profiles}
+          deleteCarrots={this.props.actions.deleteCarrots}
+          addCarrots={this.props.actions.addCarrots}
+          deleteProfile={this.props.actions.deleteProfile}
+        />
       </div>
     );
   }
 }
 
 App.propTypes = {
-  profiles: PropTypes.array.isRequired,
+  profiles: PropTypes.array,
   actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
-  const { profiles } = state;
-  return { profiles };
+  return { profiles: state.profiles };
 }
 
 function mapDispatchToProps(dispatch) {
