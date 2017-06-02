@@ -4,11 +4,32 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as actions from '../actions';
+import countingSort from '../utilities/countingSort';
+//import generateProfiles from '../utilities/generateProfiles';
 import CreateProfile from '../components/CreateProfile';
 import ProfilesTable from '../components/ProfilesTable';
 import '../styles/App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      profiles: []
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.profiles !== this.state.profiles) {
+      let profiles = nextProps.profiles;
+      //profiles = generateProfiles();
+      let sortedProfiles = countingSort(profiles, 'carrots');
+      this.setState({
+        profiles: sortedProfiles
+      });
+    }
+  }
+
   render() {
     return (
       <div>
@@ -16,7 +37,7 @@ class App extends Component {
           createProfile={this.props.actions.createProfile}
         />
         <ProfilesTable
-          profiles={this.props.profiles}
+          profiles={this.state.profiles}
           deleteCarrots={this.props.actions.deleteCarrots}
           addCarrots={this.props.actions.addCarrots}
           deleteProfile={this.props.actions.deleteProfile}
