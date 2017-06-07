@@ -2,6 +2,9 @@ export default function countingSort(array, key, order = 'DESC') {
   //const t0 = performance.now();
 
   const max = Math.max(...array.map(obj => obj[key]));
+  if(max < 0) {
+    return [];
+  }
 
   let count;
   (count = []).length = max + 1;

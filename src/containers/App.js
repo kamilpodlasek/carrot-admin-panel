@@ -5,12 +5,12 @@ import { bindActionCreators } from 'redux';
 
 import * as actions from '../actions';
 import countingSort from '../utilities/countingSort';
-//import generateProfiles from '../utilities/generateProfiles';
+import generateProfiles from '../utilities/generateProfiles';//eslint-disable-line no-unused-vars
 import CreateProfile from '../components/CreateProfile';
 import ProfilesTable from '../components/ProfilesTable';
 import '../styles/App.css';
 
-class App extends Component {
+export class App extends Component {
   constructor() {
     super();
 

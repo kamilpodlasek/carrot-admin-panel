@@ -35,28 +35,28 @@ export function deleteProfile(id) {
 }
 
 export function addCarrots(id, amount) {
-  let carrots;
+  let carrotsNew;
   return dispatch => {
     db.profiles.where(":id").equals(id).modify(profile => {
-      carrots = parseInt(profile.carrots, 10) + amount;
-      profile.carrots = carrots;
+      carrotsNew = profile.carrots + amount;
+      profile.carrots = carrotsNew;
     }).then(() =>
       dispatch({
         type: types.MANIPULATE_CARROTS,
         id,
-        carrots
+        carrots: carrotsNew
       })
     );
   };
 }
 
 export function deleteCarrots(id, amount) {
-  let carrots;
+  let carrotsNew;
   return dispatch => {
     db.profiles.where(":id").equals(id).modify(profile => {
       if(profile.carrots >= amount) {
-        carrots = parseInt(profile.carrots, 10) - amount;
-        profile.carrots = carrots;
+        carrotsNew = profile.carrots - amount;
+        profile.carrots = carrotsNew;
       } else {
         throw new Error("Too little carrots!");
       }
@@ -64,7 +64,7 @@ export function deleteCarrots(id, amount) {
       dispatch({
         type: types.MANIPULATE_CARROTS,
         id,
-        carrots
+        carrots: carrotsNew
       })
     ).catch(err => console.log(err));
   };

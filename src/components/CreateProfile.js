@@ -8,7 +8,7 @@ const CreateProfile = ({createProfile}) => {
     e.preventDefault();
 
     const name = nameNode.value;
-    const carrots = carrotsNode.value;
+    const carrots = parseInt(carrotsNode.value, 10);
 
     if(name && carrots) {
       createProfile({name, carrots});
