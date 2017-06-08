@@ -8,7 +8,9 @@ import countingSort from '../utilities/countingSort';
 import generateProfiles from '../utilities/generateProfiles';//eslint-disable-line no-unused-vars
 import CreateProfile from '../components/CreateProfile';
 import ProfilesTable from '../components/ProfilesTable';
-import '../styles/App.css';
+import JumbotronTop from '../components/styledComponents/JumbotronTop';
+import ColCreateProfile from '../components/styledComponents/ColCreateProfile';
+import ColProfilesTable from '../components/styledComponents/ColProfilesTable';
 
 export class App extends Component {
   constructor() {
@@ -33,15 +35,23 @@ export class App extends Component {
   render() {
     return (
       <div>
-        <CreateProfile
-          createProfile={this.props.actions.createProfile}
-        />
-        <ProfilesTable
-          profiles={this.state.profiles}
-          deleteCarrots={this.props.actions.deleteCarrots}
-          addCarrots={this.props.actions.addCarrots}
-          deleteProfile={this.props.actions.deleteProfile}
-        />
+        <JumbotronTop>
+          <h1>Carrot Admin Panel</h1>
+          <p>Helps you manage your harvest</p>
+        </JumbotronTop>
+        <ColCreateProfile sm={12}>
+          <CreateProfile
+            createProfile={this.props.actions.createProfile}
+          />
+        </ColCreateProfile>
+        <ColProfilesTable sm={12}>
+          <ProfilesTable
+            profiles={this.state.profiles}
+            deleteCarrots={this.props.actions.deleteCarrots}
+            addCarrots={this.props.actions.addCarrots}
+            deleteProfile={this.props.actions.deleteProfile}
+          />
+        </ColProfilesTable>
       </div>
     );
   }

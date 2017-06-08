@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Col from 'react-bootstrap/lib/Col';
 
 import ProfileRow from './ProfileRow';
+import Title from './styledComponents/Title';
+import TableBig from './styledComponents/TableBig';
+import ThFit from './styledComponents/ThFit';
+import ThFitButtons from './styledComponents/ThFitButtons';
 
 const ProfilesTable = props => {
   const { profiles } = props;
@@ -16,18 +21,23 @@ const ProfilesTable = props => {
   );
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Carrots</th>
-        </tr>
-      </thead>
-      <tbody>
-        {rows}
-      </tbody>
-    </table>
+    <Col sm={12} md={10} mdOffset={1}>
+      <Title>Profiles:</Title>
+      <TableBig condensed hover>
+        <thead>
+          <tr>
+            <ThFit>ID</ThFit>
+            <ThFit>Name</ThFit>
+            <ThFit>Carrots</ThFit>
+            <ThFitButtons></ThFitButtons>
+            <ThFit></ThFit>
+          </tr>
+        </thead>
+        <tbody>
+          {rows}
+        </tbody>
+      </TableBig>
+    </Col>
   );
 };
 
