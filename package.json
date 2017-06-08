@@ -7,6 +7,7 @@
     "dexie": "^1.5.1",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
+    "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.5",
     "redux": "^3.6.0",
@@ -17,7 +18,8 @@
     "react-dom": "^15.5.4",
     "react-scripts": "1.0.7",
     "react-test-renderer": "^15.5.4",
-    "redux-mock-store": "^1.2.3"
+    "redux-mock-store": "^1.2.3",
+    "styled-components": "^2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
