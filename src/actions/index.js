@@ -8,7 +8,12 @@ export function loadProfiles() {
         type: types.LOAD_PROFILES,
         profiles
       })
-    );
+    ).catch(error => {
+      dispatch({
+        type: types.ADD_ERROR,
+        error
+      });
+    });
   };
 }
 
@@ -19,7 +24,12 @@ export function createProfile(profile) {
         type: types.CREATE_PROFILE,
         profile: Object.assign({}, profile, { id })
       })
-    );
+    ).catch(error => {
+      dispatch({
+        type: types.ADD_ERROR,
+        error
+      });
+    });
   };
 }
 
@@ -30,7 +40,12 @@ export function deleteProfile(id) {
         type: types.DELETE_PROFILE,
         id
       })
-    );
+    ).catch(error => {
+      dispatch({
+        type: types.ADD_ERROR,
+        error
+      });
+    });
   };
 }
 
@@ -46,7 +61,12 @@ export function addCarrots(id, amount) {
         id,
         carrots: carrotsNew
       })
-    );
+    ).catch(error => {
+      dispatch({
+        type: types.ADD_ERROR,
+        error
+      });
+    });
   };
 }
 
@@ -66,6 +86,17 @@ export function deleteCarrots(id, amount) {
         id,
         carrots: carrotsNew
       })
-    ).catch(err => console.log(err));
+    ).catch(error => {
+      dispatch({
+        type: types.ADD_ERROR,
+        error
+      });
+    });
+  };
+}
+
+export function removeError() {
+  return {
+    type: types.REMOVE_ERROR
   };
 }

@@ -85,10 +85,10 @@ class CreateProfile extends Component {
             </Col>
             <Col sm={6}>
               {
-                !this.state.valid ? <HelpBlock>All fields are required.</HelpBlock> : ""
+                !this.state.valid && <HelpBlock>All fields are required.</HelpBlock>
               }
               {
-                this.state.added ? <HelpBlock>Profile created successfully.</HelpBlock> : ""
+                this.state.added && <HelpBlock>Profile created successfully.</HelpBlock>
               }
             </Col>
           </FormGroup>

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Modal from 'react-bootstrap/lib/Modal';
+import Button from 'react-bootstrap/lib/Button';
 
 import * as actions from '../actions';
 import countingSort from '../utilities/countingSort';
@@ -17,8 +19,12 @@ export class App extends Component {
     super();
 
     this.state = {
-      profiles: []
+      profiles: [],
+      isError: false,
+      error: ""
     }
+
+    this.closeError = this.closeError.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -30,11 +36,37 @@ export class App extends Component {
         profiles: sortedProfiles
       });
     }
+
+    let error = "";
+    if(nextProps.error && nextProps.error.failures) {
+      error = nextProps.error.failures[0].message;
+    } else if(typeof nextProps.error === "string") {
+      error = nextProps.error;
+    }
+
+    this.setState({
+      isError: (error) ? true : false,
+      error
+    });
+  }
+
+  closeError() {
+    this.props.actions.removeError();
   }
 
   render() {
     return (
       <div>
+        <Modal show={this.state.isError} onHide={this.closeError}>
+          <Modal.Header closeButton>
+            <Modal.Title>Error</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>{this.state.error}</Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.closeError}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+          
         <JumbotronTop>
           <h1>Carrot Admin Panel</h1>
           <p>Helps you manage your harvest</p>
@@ -63,7 +95,10 @@ App.propTypes = {
 };
 
 function mapStateToProps(state) {
-  return { profiles: state.profiles };
+  return {
+    profiles: state.profiles.profiles,
+    error: state.profiles.error
+  };
 }
 
 function mapDispatchToProps(dispatch) {
