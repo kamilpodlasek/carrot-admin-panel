@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/lib/Form';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
-//import HelpBlock from 'react-bootstrap/lib/HelpBlock';
+import HelpBlock from 'react-bootstrap/lib/HelpBlock';
 import Button from 'react-bootstrap/lib/Button';
 
 import Title from './styledComponents/Title';
@@ -15,7 +15,9 @@ class CreateProfile extends Component {
     super();
     this.state = {
       name: "",
-      carrots: ""
+      carrots: "",
+      valid: true,
+      added: false
     };
     
     this.handleChange = this.handleChange.bind(this);
@@ -38,20 +40,23 @@ class CreateProfile extends Component {
       this.props.createProfile({name, carrots});
       this.setState({
         name: "",
-        carrots: ""
+        carrots: "",
+        valid: true,
+        added: true
       });
     } else {
-      //nameValidationState = name ? "" : "error";
-      //carrotsValidationState = carrots ? "" : "error";
+      this.setState({
+        valid: false
+      });
     }
+
+    setTimeout(() => this.setState({
+      valid: true,
+      added: false
+    }), 3000);
   }
 
   render() {
-    //let nameValidationState,
-    //    carrotsValidationState;
-
-    //validationState={nameValidationState}
-
     return (
       <Col sm={12} md={6} mdOffset={3}>
         <Title>Create a new profile:</Title>
@@ -62,9 +67,6 @@ class CreateProfile extends Component {
             </Col>
             <Col sm={10}>
               <FormControl type="text" name="name" value={this.state.name} onChange={this.handleChange} />
-              {
-                //(nameValidationState === "error") ? <HelpBlock>This field is required.</HelpBlock> : ""
-              }
             </Col>
           </FormGroup>
 
@@ -74,17 +76,20 @@ class CreateProfile extends Component {
             </Col>
             <Col sm={10}>
               <FormControl type="number" name="carrots" value={this.state.carrots} onChange={this.handleChange} />
-              {
-                //(carrotsValidationState === "error") ? <HelpBlock>This field is required.</HelpBlock> : ""
-              }
             </Col>
           </FormGroup>
 
           <FormGroup>
-            <Col smOffset={2} sm={10}>
-              <Button type="submit">
-                Create
-              </Button>
+            <Col smOffset={2} sm={4}>
+              <Button type="submit">Create</Button>
+            </Col>
+            <Col sm={6}>
+              {
+                !this.state.valid ? <HelpBlock>All fields are required.</HelpBlock> : ""
+              }
+              {
+                this.state.added ? <HelpBlock>Profile created successfully.</HelpBlock> : ""
+              }
             </Col>
           </FormGroup>
         </Form>
