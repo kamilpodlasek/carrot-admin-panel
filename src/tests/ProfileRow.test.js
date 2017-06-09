@@ -52,62 +52,62 @@ describe("ProfileRow", () => {
     it("button 1 text and onClick is correct", () => {
       buttons.at(0).simulate("click");
       expect(deleteCarrots).toBeCalledWith(50);
-      expect(buttons.at(0).text()).toBe("50");
+      expect(buttons.at(0).text()).toBe("-50");
     });
     it("button 2 text and onClick is correct", () => {
       buttons.at(1).simulate("click");
       expect(deleteCarrots).toBeCalledWith(20);
-      expect(buttons.at(1).text()).toBe("20");
+      expect(buttons.at(1).text()).toBe("-20");
     });
     it("button 3 text and onClick is correct", () => {
       buttons.at(2).simulate("click");
       expect(deleteCarrots).toBeCalledWith(10);
-      expect(buttons.at(2).text()).toBe("10");
+      expect(buttons.at(2).text()).toBe("-10");
     });
     it("button 4 text and onClick is correct", () => {
       buttons.at(3).simulate("click");
       expect(deleteCarrots).toBeCalledWith(5);
-      expect(buttons.at(3).text()).toBe("5");
+      expect(buttons.at(3).text()).toBe("-5");
     });
     it("button 5 text and onClick is correct", () => {
       buttons.at(4).simulate("click");
       expect(deleteCarrots).toBeCalledWith(2);
-      expect(buttons.at(4).text()).toBe("2");
+      expect(buttons.at(4).text()).toBe("-2");
     });
     it("button 6 text and onClick is correct", () => {
       buttons.at(5).simulate("click");
       expect(deleteCarrots).toBeCalledWith(1);
-      expect(buttons.at(5).text()).toBe("1");
+      expect(buttons.at(5).text()).toBe("-1");
     });
     it("button 7 text and onClick is correct", () => {
       buttons.at(6).simulate("click");
       expect(addCarrots).toBeCalledWith(1);
-      expect(buttons.at(6).text()).toBe("1");
+      expect(buttons.at(6).text()).toBe("+1");
     });
     it("button 8 text and onClick is correct", () => {
       buttons.at(7).simulate("click");
       expect(addCarrots).toBeCalledWith(2);
-      expect(buttons.at(7).text()).toBe("2");
+      expect(buttons.at(7).text()).toBe("+2");
     });
     it("button 9 text and onClick is correct", () => {
       buttons.at(8).simulate("click");
       expect(addCarrots).toBeCalledWith(5);
-      expect(buttons.at(8).text()).toBe("5");
+      expect(buttons.at(8).text()).toBe("+5");
     });
     it("button 10 text and onClick is correct", () => {
       buttons.at(9).simulate("click");
       expect(addCarrots).toBeCalledWith(10);
-      expect(buttons.at(9).text()).toBe("10");
+      expect(buttons.at(9).text()).toBe("+10");
     });
     it("button 11 text and onClick is correct", () => {
       buttons.at(10).simulate("click");
       expect(addCarrots).toBeCalledWith(20);
-      expect(buttons.at(10).text()).toBe("20");
+      expect(buttons.at(10).text()).toBe("+20");
     });
     it("button 12 text and onClick is correct", () => {
       buttons.at(11).simulate("click");
       expect(addCarrots).toBeCalledWith(50);
-      expect(buttons.at(11).text()).toBe("50");
+      expect(buttons.at(11).text()).toBe("+50");
     });
     it("button 13 text and onClick is correct", () => {
       buttons.at(12).simulate("click");
