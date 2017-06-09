@@ -2,10 +2,13 @@ import React from "react";
 import { mount, shallow } from "enzyme";
 import configureStore from 'redux-mock-store'
 import { Provider } from 'react-redux';
+import Modal from 'react-bootstrap/lib/Modal';
+//import Jumbotron from 'react-bootstrap/lib/Jumbotron';
 
 import ConectedApp, { App } from "../containers/App";
 import CreateProfile from "../components/CreateProfile";
 import ProfilesTable from "../components/ProfilesTable";
+import JumbotronTop from '../components/styledComponents/JumbotronTop';
 
 describe("App", () => {
   let props, app;
@@ -13,6 +16,7 @@ describe("App", () => {
   const deleteCarrots = jest.fn();
   const addCarrots = jest.fn();
   const deleteProfile = jest.fn();
+  const removeError = jest.fn();
 
   beforeEach(() => {
     props = {
@@ -21,7 +25,8 @@ describe("App", () => {
         createProfile,
         deleteCarrots,
         addCarrots,
-        deleteProfile
+        deleteProfile,
+        removeError
       }
     };
     app = shallow(
@@ -32,6 +37,11 @@ describe("App", () => {
   it("renders a div", () => {
     const divs = app.find("div");
     expect(divs.length).toEqual(1);
+  });
+
+  it("renders JumbotronTop", () => {
+    const JumbotronTops = app.find(JumbotronTop);
+    expect(JumbotronTops.length).toEqual(1);
   });
 
   it("renders CreateProfile", () => {
@@ -63,10 +73,13 @@ describe("App with Redux", () => {
   let store, app;
   const mockStore = configureStore();
   const initialState = {
-    profiles: [
-      { name: "Króliczek", carrots: 30 },
-      { name: "Zaionc", carrots: 0 }
-    ]
+    profiles: {
+      profiles: [
+        { name: "Króliczek", carrots: 30 },
+        { name: "Zaionc", carrots: 0 }
+      ],
+      error: null
+    }
   };
 
   beforeEach(() => {
@@ -81,6 +94,7 @@ describe("App with Redux", () => {
   });
 
   it('props matches initialState', () => {
-    expect(app.find(App).prop('profiles')).toEqual(initialState.profiles)
+    expect(app.find(App).prop('profiles')).toEqual(initialState.profiles.profiles);
+    expect(app.find(App).prop('error')).toEqual(initialState.profiles.error);
   });
 });
