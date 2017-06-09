@@ -2,8 +2,6 @@ import React from "react";
 import { mount, shallow } from "enzyme";
 import configureStore from 'redux-mock-store'
 import { Provider } from 'react-redux';
-import Modal from 'react-bootstrap/lib/Modal';
-//import Jumbotron from 'react-bootstrap/lib/Jumbotron';
 
 import ConectedApp, { App } from "../containers/App";
 import CreateProfile from "../components/CreateProfile";

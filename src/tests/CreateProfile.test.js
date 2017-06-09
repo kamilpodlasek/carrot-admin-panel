@@ -1,8 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import TestUtils from 'react-dom/test-utils';
-
 import CreateProfile from "../components/CreateProfile";
 
 describe("CreateProfile", () => {
