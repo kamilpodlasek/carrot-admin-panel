@@ -1,5 +1,5 @@
 export default function countingSort(array, key, order = 'DESC') {
-  //const t0 = performance.now();
+  const t0 = performance.now();
 
   const max = Math.max(...array.map(obj => obj[key]));
   if(max < 0) {
@@ -28,8 +28,8 @@ export default function countingSort(array, key, order = 'DESC') {
     count[array[i][key]] = outputPos - 1;
   }
 
-  //const t1 = performance.now();
-  //console.log('Sorting took', (t1 - t0).toFixed(4), 'milliseconds');
+  const t1 = performance.now();
+  console.log('Sorting took', (t1 - t0).toFixed(4), 'milliseconds');
 
   return output;
 };

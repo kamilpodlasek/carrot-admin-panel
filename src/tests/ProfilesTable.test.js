@@ -1,5 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
+import Col from 'react-bootstrap/lib/Col';
 
 import ProfilesTable from "../components/ProfilesTable";
 import ProfileRow from "../components/ProfileRow";
@@ -22,6 +23,16 @@ describe("ProfilesTable", () => {
     );
   });
 
+  it("renders a Col", () => {
+    const Cols = profilesTable.find(Col);
+    expect(Cols.length).toEqual(1);
+  });
+
+  it("renders an h2", () => {
+    const h2s = profilesTable.find("h2");
+    expect(h2s.length).toEqual(1);
+  });
+
   it("renders a table", () => {
     const tables = profilesTable.find("table");
     expect(tables.length).toEqual(1);
@@ -39,10 +50,12 @@ describe("ProfilesTable", () => {
 
   it("renders ths in thead tr", () => {
     const ths = profilesTable.find("th");
-    expect(ths.length).toEqual(3);
+    expect(ths.length).toEqual(5);
     expect(ths.at(0).text()).toBe("ID");
     expect(ths.at(1).text()).toBe("Name");
     expect(ths.at(2).text()).toBe("Carrots");
+    expect(ths.at(3).text()).toBe("");
+    expect(ths.at(4).text()).toBe("");
   });
 
   it("renders correct amount of ProfileRows", () => {

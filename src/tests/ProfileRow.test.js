@@ -26,9 +26,9 @@ describe("ProfileRow", () => {
     expect(trs.length).toEqual(1);
   });
 
-  it("renders 4 tds", () => {
+  it("renders 5 tds", () => {
     const tds = profileRow.find("td");
-    expect(tds.length).toEqual(4);
+    expect(tds.length).toEqual(5);
   });
 
   it("renders text inside tds", () => {
@@ -36,6 +36,11 @@ describe("ProfileRow", () => {
     expect(tds.at(0).text()).toBe(props.profile.id + "");
     expect(tds.at(1).text()).toBe(props.profile.name);
     expect(tds.at(2).text()).toBe(props.profile.carrots + "");
+  });
+
+  it("renders a div", () => {
+    const divs = profileRow.find("div");
+    expect(divs.length).toEqual(1);
   });
 
   describe("buttons", () => {
@@ -107,7 +112,8 @@ describe("ProfileRow", () => {
     it("button 13 text and onClick is correct", () => {
       buttons.at(12).simulate("click");
       expect(deleteProfile).toBeCalled();
-      expect(buttons.at(12).text()).toBe("Delete profile");
+      const glyphicons = buttons.at(12).find(".glyphicon");
+      expect(glyphicons.length).toEqual(1);
     });
   });
 });

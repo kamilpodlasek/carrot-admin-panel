@@ -3,7 +3,7 @@ import ThFit from './ThFit';
 
 const ThFitButtons = styled(ThFit)`
   white-space: nowrap;
-  width: 6%;
+  width: 10%;
 `;
 
 export default ThFitButtons;

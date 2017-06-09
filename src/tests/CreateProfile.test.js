@@ -16,9 +16,9 @@ describe("CreateProfile", () => {
     );
   });
 
-  it("renders a div", () => {
+  it("renders 8 divs", () => {
     const divs = createProfile.find("div");
-    expect(divs.length).toEqual(1);
+    expect(divs.length).toEqual(8);
   });
 
   it("renders an h2", () => {
@@ -31,29 +31,41 @@ describe("CreateProfile", () => {
     expect(forms.length).toEqual(1);
   });
 
-  it("renders 2 ps", () => {
-    const ps = createProfile.find("p");
-    expect(ps.at(0).text()).toBe("Name:");
-    expect(ps.at(1).text()).toBe("Carrots:");
-    expect(ps.length).toEqual(2);
+  it("renders 2 labels", () => {
+    const labels = createProfile.find("label");
+    expect(labels.at(0).text()).toBe("Name");
+    expect(labels.at(1).text()).toBe("Carrots");
+    expect(labels.length).toEqual(2);
   });
 
-  it("renders 3 inputs", () => {
+  it("renders 2 inputs", () => {
     const inputs = createProfile.find("input");
-    expect(inputs.length).toEqual(3);
+    expect(inputs.length).toEqual(2);
   });
 
-  describe("on form submit createProfile callback", () => {
-    it("is not called when the fields are empty", () => {
-      const inputs = createProfile.find("input");
+  it("renders a button", () => {
+    const buttons = createProfile.find("button");
+    expect(buttons.length).toEqual(1);
+    expect(buttons.at(0).text()).toBe("Create");
+  });
+
+  describe("on form submit", () => {
+    it("createProfile callback is not called when at least one field is empty", () => {
+      createProfile.setState({name: "", carrots: ""});
+      createProfile.find('form').simulate('submit');
+      expect(createProfileFn).not.toBeCalled();
+
+      createProfile.setState({name: "Króliczek", carrots: ""});
+      createProfile.find('form').simulate('submit');
+      expect(createProfileFn).not.toBeCalled();
+
+      createProfile.setState({name: "", carrots: "30"});
       createProfile.find('form').simulate('submit');
       expect(createProfileFn).not.toBeCalled();
     });
 
-    it("is called correctly when the fields are filled", () => {
-      const inputs = createProfile.find("input");
-      inputs.at(0).node.value = "Króliczek";
-      inputs.at(1).node.value = "30";
+    it("createProfile callback is called correctly when the fields are filled", () => {
+      createProfile.setState({name: "Króliczek", carrots: "30"});
       createProfile.find('form').simulate('submit');
       expect(createProfileFn).toBeCalledWith({name: "Króliczek", carrots: 30});
     });
